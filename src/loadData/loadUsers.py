@@ -108,8 +108,3 @@ def readAllUsers(path_in):
 
     return user_list, attack_list
 
-
-
-if __name__ == '__main__':
-    user_list, attack_list = readRealAndRandomUsers('../../users/')
-
