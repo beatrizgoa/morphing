@@ -1,6 +1,37 @@
 from src.loadData import loadUsers
+from numpy import zeros, ones, concatenate, arange
+from random import random
+
+def getDataFromRaw(path = '../../users/' ):
+    user_list, attack_list = loadUsers.readRealAndRandomUsers(path)
+    return user_list, attack_list
+
+def shuffleData(user_list, attack_list):
+    x = []
+    new_x = []
+    new_y = []
+
+    user_len = len(user_list)
+    attack_len = len(attack_list)
+
+    x.append(user_list)
+    x.append(attack_list)
+
+    y = concatenate((zeros(user_len), ones(attack_len)))
+
+    index = arange(0, len(y))
+    random(10).shuffle(index)
+
+    for i in index:
+        new_x.append(x[i])
+        new_y.append(y[i])
+
+    return new_x, new_y
 
 
 def createDataAndTrain():
-    user_list, attack_list = loadUsers.readRealAndRandomUsers('../../users/')
+    user_list, attack_list = getDataFromRaw()
+    
+    x, y = shuffleData(user_list, attack_list)
+
 
