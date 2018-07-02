@@ -1,6 +1,7 @@
 from src.loadData import loadUsers
 from numpy import zeros, ones, concatenate, arange
 from random import random
+from sklearn.model_selection import train_test_split
 
 def getDataFromRaw(path = '../../users/' ):
     user_list, attack_list = loadUsers.readRealAndRandomUsers(path)
@@ -29,9 +30,11 @@ def shuffleData(user_list, attack_list):
     return new_x, new_y
 
 
-def createDataAndTrain():
+def createTrainAndTestData():
     user_list, attack_list = getDataFromRaw()
-    
     x, y = shuffleData(user_list, attack_list)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42)
+
+    return x_train, x_test, y_train, y_test
 
 
