@@ -14,14 +14,13 @@ def convLayer(nameLayer,x, n_channels, n_kernels, size_kernels, strides = (1,1,1
 		tf.summary.histogram("bias", b)
 		tf.summary.histogram("activations", activation)
 
-		return conv_op, activation
+	return conv_op, activation
 
 
 def poolLayer(nameLayer, x, ksize, strides= (1,1,1,1)):
 	# max pool layer is defined
 	with tf.name_scope(nameLayer):
 		return tf.nn.max_pool(x, ksize = ksize, strides = strides, padding="SAME")
-		
 
 
 def hiddenLayer(nameLayer, x, in_neurons, out_neurons):
@@ -38,9 +37,8 @@ def hiddenLayer(nameLayer, x, in_neurons, out_neurons):
 	return activation
 
 
-
 def dropoutLayer(nameLayer, x, keep_prob = 0.4):
-	# DropoutLayer 
+	# DropoutLayer
 	with tf.name_scope(nameLayer):
 		return tf.nn.dropout(x, keep_prob = keep_prob, name = "dropout")
 
